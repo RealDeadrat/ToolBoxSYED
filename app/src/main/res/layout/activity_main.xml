@@ -1,22 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:layout_gravity="center">
 
-    <TextView
+    <ImageView
+        android:id="@+id/fancyImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/fancytext"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintLeft_toLeftOf="@id/inputText"
+        app:layout_constraintRight_toRightOf="@id/inputText"/>
+
+    <EditText
+        android:id="@+id/inputText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Find Your Pallete!"
+        android:hint="Type Your Text!"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fancyImg"
         android:layout_marginTop="50dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text Color"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/inputText"
+        app:layout_constraintLeft_toLeftOf="@id/inputText"/>
+
+    <RadioGroup
+        android:id="@+id/McGroup"
+        android:layout_width="226dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="@id/inputText"
+        app:layout_constraintTop_toBottomOf="@id/inputText">
+
+        <RadioButton
+            android:id="@+id/radBtn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red" />
+
+        <RadioButton
+            android:id="@+id/radBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blue" />
+
+        <RadioButton
+            android:id="@+id/radBtn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green" />
+
+        <RadioButton
+            android:id="@+id/radBtn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Black" />
+    </RadioGroup>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        app:layout_constraintTop_toBottomOf="@id/McGroup"
+        app:layout_constraintLeft_toLeftOf="@id/McGroup"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/McGroup"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/McGroup"
+        android:text="Theme"/>
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Light"
+        android:textOn="Dark"
+        android:showText="true"
+        app:layout_constraintLeft_toRightOf="@id/McGroup"
+        app:layout_constraintTop_toBottomOf="@id/McGroup"
+        android:layout_marginTop="50dp"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        app:layout_constraintTop_toBottomOf="@id/McGroup"
+        android:layout_marginTop="75dp"
+        app:layout_constraintLeft_toLeftOf="@id/McGroup"
+        app:layout_constraintRight_toRightOf="@id/McGroup"/>
+    <CheckBox
+        android:id="@+id/smallBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Small Text"
+        app:layout_constraintTop_toBottomOf="@id/McGroup"
+        android:layout_marginTop="100dp"
+        app:layout_constraintLeft_toLeftOf="@id/McGroup"
+        app:layout_constraintRight_toRightOf="@id/McGroup"/>
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:text="(Press To Apply)"
+        android:textColor="@color/colorBtnText"
+        android:textSize="18sp"
+        android:background="@drawable/fancify"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/smallBox"
+        android:layout_marginTop="50dp"
+        />
 
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
