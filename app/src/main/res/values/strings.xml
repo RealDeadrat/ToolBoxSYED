@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">ToolBoxSYED</string>
+    <string name="check_txt_1">Large Text</string>
+    <string name="check_txt_2">Small Text</string>
+    <string name="rad_btn_txt_1">Red</string>
+    <string name="rad_btn_txt_2">Blue</string>
+    <string name="rad_btn_txt_3">Green</string>
+    <string name="rad_btn_txt_4">Black</string>
+    <string-array name="img_spn_array">
+        <item>Fancy</item>
+        <item>Cool</item>
+        <item>Hot</item>
+    </string-array>
 </resources>
