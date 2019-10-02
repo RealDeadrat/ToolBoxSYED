@@ -6,6 +6,7 @@
     android:layout_gravity="center_horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/mainLay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -13,13 +14,30 @@
 
     <ImageView
         android:id="@+id/fancyImg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/fancytext"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/fancytext"
+        android:text="Image Toggle"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="25dp"
-        app:layout_constraintLeft_toLeftOf="@id/inputText"
-        app:layout_constraintRight_toRightOf="@id/inputText"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="125dp"/>
+
+    <Spinner
+        android:id="@+id/textVarySpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="20dp" />
 
     <EditText
         android:id="@+id/inputText"
@@ -73,12 +91,6 @@
             android:text="@string/rad_btn_txt_4" />
     </RadioGroup>
 
-    <Spinner
-        android:id="@+id/textVarySpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/McGroup"
-        app:layout_constraintLeft_toLeftOf="@id/McGroup"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,6 +99,7 @@
         app:layout_constraintLeft_toRightOf="@id/McGroup"
         android:text="Theme"/>
     <Switch
+        android:id="@+id/styleChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textOff="Light"
@@ -96,6 +109,7 @@
         app:layout_constraintTop_toBottomOf="@id/McGroup"
         android:layout_marginTop="50dp"/>
     <CheckBox
+        android:id="@+id/largeBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/check_txt_1"
@@ -119,6 +133,7 @@
         android:textColor="@color/colorBtnText"
         android:textSize="18sp"
         android:background="@drawable/fancify"
+        android:onClick="sendText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/smallBox"
