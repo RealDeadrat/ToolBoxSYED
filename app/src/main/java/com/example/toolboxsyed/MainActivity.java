@@ -38,48 +38,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spin.setAdapter(aa);
-
-        Switch styleSwitch = (Switch) findViewById(R.id.styleChange);
-
-        styleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(!b && !(getTheme().getResources().toString().equals("android.content.res.Resources@444596e")))
-                {
-
-                        setTheme(android.R.style.Theme_DeviceDefault_Light_DarkActionBar);
-                        //Toast.makeText(getApplicationContext(),"big brain", Toast.LENGTH_LONG).show();
-                        recreate();
-
-                }
-                else if(b  && !(getTheme().getResources().toString().equals("android.content.res.Resources@444596e")))
-                {
-                    setTheme(android.R.style.Theme_DeviceDefault_DayNight);
-                    //Toast.makeText(getApplicationContext(),"big brain", Toast.LENGTH_LONG).show();
-                    recreate();
-                }
-            }
-        });
-
-       /* if(!styleSwitch.isChecked() && !(getTheme().getResources().toString().equals("android.content.res.Resources@3da4bf3")))
-        {
-            setTheme(android.R.style.Theme_DeviceDefault_Light_DarkActionBar);
-            //Toast.makeText(getApplicationContext(),"big brain", Toast.LENGTH_LONG).show();
-            this.recreate();
-        }
-        else if(styleSwitch.isChecked() && !(getTheme().getResources().toString().equals("")))
-        {
-            setTheme(android.R.style.Theme_DeviceDefault_DayNight);
-            //Toast.makeText(getApplicationContext(),"big brain", Toast.LENGTH_LONG).show();
-            this.recreate();
-        }
-        */
     }
 
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id)
     {
         ImageView textImg = (ImageView) findViewById(R.id.fancyImg);
-        Toast.makeText(getApplicationContext(),getTheme().getResources().toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),arg0.getItemAtPosition(position).toString()
+                ,Toast.LENGTH_LONG).show();
 
         if(position==0)
         {
@@ -106,63 +72,66 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TextView inputText = (TextView) findViewById(R.id.inputText);
         String inputTextStr = inputText.getText().toString();
 
-        CheckBox smallBox = (CheckBox) findViewById(R.id.smallBox);
-        CheckBox largeBox = (CheckBox) findViewById(R.id.largeBox);
-
-        RadioButton redBtn = (RadioButton) findViewById(R.id.radBtn1);
-        RadioButton blueBtn = (RadioButton) findViewById(R.id.radBtn2);
-        RadioButton greenBtn = (RadioButton) findViewById(R.id.radBtn3);
-        RadioButton blackBtn = (RadioButton) findViewById(R.id.radBtn4);
-
-        String red = "#ff0022";
-        String blue = "#0022ff";
-        String green = "#22ff00";
-        String black = "#000000";
-
-        Intent intent = new Intent(this, FancyDisplayActivity.class);
-
-        if(smallBox.isChecked())
+        if(inputTextStr.equals(""))
         {
-            //inputTextStr = makeSmall(inputTextStr);
-            intent.putExtra(FancyDisplayActivity.SMALL_CHECKED,"true");
+            Toast.makeText(getApplicationContext(), "Please Type something in the textBox",
+                    Toast.LENGTH_LONG).show();
         }
-        else
+        else if(inputTextStr.endsWith(" ") || inputTextStr.startsWith(" "))
         {
-            //inputTextStr = makeLarge(inputTextStr);
-            intent.putExtra(FancyDisplayActivity.SMALL_CHECKED,"false");
+            Toast.makeText(getApplicationContext(),
+                    "Please don't begin or end your statement with a space",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
 
-        }
-        if(largeBox.isChecked())
-        {
-            intent.putExtra(FancyDisplayActivity.LARGE_CHECKED,"true");
-        }
-        else
-        {
-            intent.putExtra(FancyDisplayActivity.LARGE_CHECKED,"false");
-        }
+            CheckBox smallBox = (CheckBox) findViewById(R.id.smallBox);
+            CheckBox largeBox = (CheckBox) findViewById(R.id.largeBox);
 
-        if(redBtn.isChecked())
-        {
-            inputTextStr = getColoredSpanned(inputTextStr, red);
-        }
-        else if(blueBtn.isChecked())
-        {
-            inputTextStr = getColoredSpanned(inputTextStr, blue);
-        }
-        else if(greenBtn.isChecked())
-        {
-            inputTextStr = getColoredSpanned(inputTextStr, green);
-        }
-        else if(blackBtn.isChecked())
-        {
-            inputTextStr = getColoredSpanned(inputTextStr, black);
-        }
+            RadioButton redBtn = (RadioButton) findViewById(R.id.radBtn1);
+            RadioButton blueBtn = (RadioButton) findViewById(R.id.radBtn2);
+            RadioButton greenBtn = (RadioButton) findViewById(R.id.radBtn3);
+            RadioButton blackBtn = (RadioButton) findViewById(R.id.radBtn4);
 
+            String red = "#ff0022";
+            String blue = "#0022ff";
+            String green = "#22ff00";
+            String black = "#000000";
 
+            Switch styleSwitch = (Switch) findViewById(R.id.styleChange);
 
-        intent.putExtra(FancyDisplayActivity.TEXT_INPUT, inputTextStr);
+            Intent intent = new Intent(this, FancyDisplayActivity.class);
 
-        startActivity(intent);
+            if (smallBox.isChecked()) {
+                intent.putExtra(FancyDisplayActivity.SMALL_CHECKED, "true");
+            } else {
+                intent.putExtra(FancyDisplayActivity.SMALL_CHECKED, "false");
+
+            }
+            if (largeBox.isChecked()) {
+                intent.putExtra(FancyDisplayActivity.LARGE_CHECKED, "true");
+            } else {
+                intent.putExtra(FancyDisplayActivity.LARGE_CHECKED, "false");
+            }
+
+            if (redBtn.isChecked()) {
+                inputTextStr = getColoredSpanned(inputTextStr, red);
+            } else if (blueBtn.isChecked()) {
+                inputTextStr = getColoredSpanned(inputTextStr, blue);
+            } else if (greenBtn.isChecked()) {
+                inputTextStr = getColoredSpanned(inputTextStr, green);
+            } else if (blackBtn.isChecked()) {
+                inputTextStr = getColoredSpanned(inputTextStr, black);
+            }
+
+            if (styleSwitch.isChecked()) {
+                inputTextStr = makeItalics(inputTextStr);
+            }
+
+            intent.putExtra(FancyDisplayActivity.TEXT_INPUT, inputTextStr);
+
+            startActivity(intent);
+        }
 
     }
 
@@ -170,5 +139,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         String input = "<font color=" + color + ">" + text + "</font>";
         return input;
+    }
+
+    //used prior knowledge of html to apply the bolding source for italics as well
+    public String makeItalics(String word)
+    {
+        String italicWord = "<i>" + word + "</i>";
+        return italicWord;
     }
 }

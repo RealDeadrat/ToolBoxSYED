@@ -23,7 +23,9 @@ public class FancyDisplayActivity extends AppCompatActivity {
 
         TextView displayView = (TextView) findViewById(R.id.display);
 
+
         displayView.setText(Html.fromHtml(textInput));
+        displayView.setTextSize(20);
         if(smallChecked.equals("true") && largeChecked.equals("false") )
         {
             displayView.setTextSize(5);
